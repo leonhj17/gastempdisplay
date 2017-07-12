@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ad25a836-6b85-453c-af97-4e88d18d288b" name="Default" comment="create Temp admin">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gas/migrations/0001_initial.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/kks.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/kksjson.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gas/admin.py" afterPath="$PROJECT_DIR$/gas/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gas/models.py" afterPath="$PROJECT_DIR$/gas/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gas/views.py" afterPath="$PROJECT_DIR$/gas/views.py" />
+    <list default="true" id="ad25a836-6b85-453c-af97-4e88d18d288b" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/csvtorecord.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mycrontab/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mycrontab/admin.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mycrontab/apps.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mycrontab/cron.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mycrontab/migrations/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mycrontab/models.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mycrontab/tests.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mycrontab/views.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/temp.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gastempdisplay/settings.py" afterPath="$PROJECT_DIR$/gastempdisplay/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kksjson.py" afterPath="$PROJECT_DIR$/kksjson.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,6 +24,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/gastempdisplay$csvtorecord.coverage" NAME="csvtorecord Coverage Results" MODIFIED="1499837972851" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/gastempdisplay$kksjson.coverage" NAME="kksjson Coverage Results" MODIFIED="1499241882592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
@@ -29,8 +36,8 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gastempdisplay/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="87" column="9" lean-forward="false" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
+            <state relative-caret-position="3275">
+              <caret line="131" column="0" lean-forward="false" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -39,22 +46,10 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gas/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-75">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="24" />
               <folding>
                 <element signature="e#25#64#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gas/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -73,8 +68,8 @@
       <file leaf-file-name="kksjson.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kksjson.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="50" column="31" lean-forward="true" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="31" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="e#25#34#0" expanded="true" />
               </folding>
@@ -82,48 +77,54 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="kks.json" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/kks.json">
+      <file leaf-file-name="manage.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manage.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="25">
-              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <caret line="2" column="10" lean-forward="false" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gas/admin.py">
+      <file leaf-file-name="temp.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/temp.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="15" column="49" lean-forward="true" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
+            <state relative-caret-position="700">
+              <caret line="109" column="16" lean-forward="false" selection-start-line="109" selection-start-column="16" selection-end-line="109" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="csvtorecord.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/csvtorecord.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="268">
+              <caret line="28" column="42" lean-forward="true" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
               <folding>
-                <element signature="e#25#57#0" expanded="true" />
+                <element signature="e#25#35#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="apps.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gas/apps.py">
+      <file leaf-file-name="cron.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mycrontab/cron.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="75">
+              <caret line="3" column="20" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gastempdisplay/urls.py">
+      <file leaf-file-name="kks.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kks.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-              <folding>
-                <element signature="e#647#679#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -143,13 +144,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/gastempdisplay/settings.py" />
         <option value="$PROJECT_DIR$/gas/migrations/0001_initial.py" />
         <option value="$PROJECT_DIR$/gas/models.py" />
         <option value="$PROJECT_DIR$/gas/views.py" />
         <option value="$PROJECT_DIR$/gas/admin.py" />
-        <option value="$PROJECT_DIR$/kksjson.py" />
         <option value="$PROJECT_DIR$/kks.json" />
+        <option value="$PROJECT_DIR$/kksjson.py" />
+        <option value="$PROJECT_DIR$/mycrontab/cron.py" />
+        <option value="$PROJECT_DIR$/gastempdisplay/settings.py" />
+        <option value="$PROJECT_DIR$/csvtorecord.py" />
       </list>
     </option>
   </component>
@@ -181,7 +184,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -194,22 +196,9 @@
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="gastempdisplay">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="gas">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -230,6 +219,11 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../muxue" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\python\django\gastempdisplay" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -242,7 +236,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.kksjson">
+  <component name="RunManager" selected="Python.csvtorecord">
     <configuration default="false" name="kksjson" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -257,6 +251,25 @@
       <module name="gastempdisplay" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/kksjson.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="csvtorecord" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="gastempdisplay" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/csvtorecord.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -457,13 +470,15 @@
       <option name="customRunCommand" value="" />
       <method />
     </configuration>
-    <list size="2">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Django server.gastempdisplay" />
       <item index="1" class="java.lang.String" itemvalue="Python.kksjson" />
+      <item index="2" class="java.lang.String" itemvalue="Python.csvtorecord" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Python.kksjson" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Python.csvtorecord" />
+        <item index="1" class="java.lang.String" itemvalue="Python.kksjson" />
       </list>
     </recent_temporary>
   </component>
@@ -492,22 +507,29 @@
       <option name="project" value="LOCAL" />
       <updated>1499063940357</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="load initial kks data">
+      <created>1499242197819</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1499242197819</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1040" height="784" extended-state="6" />
+    <editor active="true" />
     <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34570312" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.307578" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5089021" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36498517" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="manage.py@gastempdisplay" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38872403" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -517,6 +539,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="manage.py@gastempdisplay" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5296736" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -529,13 +552,204 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="create gas models" />
     <MESSAGE value="create Temp admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="create Temp admin" />
+    <MESSAGE value="load initial kks data" />
+    <option name="LAST_COMMIT_MESSAGE" value="load initial kks data" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/kksjson.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1125">
+          <caret line="46" column="15" lean-forward="false" selection-start-line="46" selection-start-column="15" selection-end-line="46" selection-end-column="15" />
+          <folding>
+            <element signature="e#25#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mycrontab/cron.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="20" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kks.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gas/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="49" lean-forward="false" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gas/apps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gastempdisplay/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2175">
+          <caret line="87" column="9" lean-forward="false" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gas/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#25#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gas/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaskks.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kks.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gas/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="49" lean-forward="false" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gas/apps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gastempdisplay/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kksjson.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1150">
+          <caret line="47" column="24" lean-forward="true" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
+          <folding>
+            <element signature="e#25#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gastempdisplay/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2175">
+          <caret line="87" column="9" lean-forward="false" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gas/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#25#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gas/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaskks.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kks.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gas/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="49" lean-forward="true" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gas/apps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gastempdisplay/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kksjson.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="900">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding>
+            <element signature="e#25#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/gastempdisplay/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2175">
@@ -548,9 +762,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="10" column="35" lean-forward="true" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
-          <folding>
-            <element signature="e#25#57#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -558,9 +769,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -568,9 +776,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="500">
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <element signature="e#647#679#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -606,9 +811,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="500">
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <element signature="e#647#679#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -616,9 +818,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="12" column="36" lean-forward="true" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
-          <folding>
-            <element signature="e#25#57#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -626,17 +825,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="500">
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <element signature="e#647#679#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gastempdisplay/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="87" column="9" lean-forward="false" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -644,9 +832,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -657,10 +842,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/gas/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="49" lean-forward="false" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/gas/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state relative-caret-position="75">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
@@ -669,11 +861,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gas/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-75">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="24" />
           <folding>
             <element signature="e#25#64#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mycrontab/cron.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="20" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Python27/packages/micropython-fcntl-0.0.2/setup.py" />
+    <entry file="file://$PROJECT_DIR$/gastempdisplay/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3275">
+          <caret line="131" column="0" lean-forward="false" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -685,31 +894,79 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gas/admin.py">
+    <entry file="file://$PROJECT_DIR$/kks.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="15" column="49" lean-forward="true" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
-          <folding>
-            <element signature="e#25#57#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kksjson.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="50" column="31" lean-forward="true" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="31" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#25#34#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kks.json">
+    <entry file="file://$PROJECT_DIR$/temp.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="109" column="16" lean-forward="false" selection-start-line="109" selection-start-column="16" selection-end-line="109" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <caret line="2" column="10" lean-forward="false" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/record/time.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="2" lean-forward="true" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/record/record.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/record/tt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/record/tt.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csvtorecord.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="28" column="42" lean-forward="true" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
+          <folding>
+            <element signature="e#25#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

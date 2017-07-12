@@ -1,6 +1,7 @@
 # _*_ encoding:utf-8 _*_
 import re
 import json
+
 dic_gz = {
     u'高过前': 'ggq',
     u'高再前': 'gzq',
@@ -27,7 +28,9 @@ def readkks():
         for line in lines:
 
             pk += 1
-
+            """
+            正则化表达式，用以匹配烟温探针位置
+            """
             rex_kks = re.compile(r'30HAJ17CT\d{3}')
             rex_gz = re.compile('高过前|高再前|高再后'.decode('utf8'))
             rex_umd = re.compile('上|中|下'.decode('utf8'))
@@ -38,7 +41,10 @@ def readkks():
             umd = rex_umd.findall(line.decode('utf8'))
             ab = rex_ab.findall(line.decode('utf8'))
             # print kks[0], dic_gz[gz[0]], dic_umd[umd[0]], dic_ab[ab[1]]
-
+            """
+            按照fixture格式，将kks编号及对应中文描述生成json文件
+            官方文档说明：https://docs.djangoproject.com/en/dev/howto/initial-data/
+            """
             jsondic = {}
             jsondic['model'] = 'gas.kksdesc'
             jsondic['pk'] = pk
