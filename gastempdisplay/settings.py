@@ -37,8 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'gas',
-    'django_crontab',
-    'mycrontab'
 ]
 
 MIDDLEWARE = [
@@ -112,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -125,7 +123,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# 定时任务
-CRONJOBS = [
-    ('*/0.5 * * * *', 'mycrontab.cron.my_scheduled_job')
-]
+

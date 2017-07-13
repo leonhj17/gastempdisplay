@@ -7,7 +7,7 @@ from .models import Temp, KksDesc
 
 class TempAdmin(admin.ModelAdmin):
     list_display = ['kks', 'temp', 'case_time']
-    list_filter = ['kks__loc_gz', 'temp', 'case_time']
+    list_filter = ['kks__kks', 'kks__loc_gz', 'kks__loc_umd', 'kks__loc_ab', 'case_time']
     search_fields = ['kks', 'temp']
 
 
