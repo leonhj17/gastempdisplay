@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3-contour.v1.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+</head>
+<body>
+    <svg height="500px" width="500px">
+        <circle r="10" cx="200" cy="100" fill-opacity="0.5" fill="grey"></circle>
+        <path d="M100 0 L150 300" style="stroke-width: 5;stroke: black; stroke-dasharray: 5"></path>
+        <path d="M250,250 a200,50,135,1,0,5,-5 z" fill="grey" style="stroke: grey;stroke-dasharray: 5;stroke-width: 1;fill-opacity: 0.5"></path>
+        <path d="M0,500 C100,350 200,250 300,200" style="fill-opacity: 0.5;fill: red;stroke: grey;stroke-dasharray: 5;stroke-width: 1"></path>
+        <path d="M300,200 C200,350 100,450 0,500" style="fill-opacity: 0.5;fill: red;stroke: grey;stroke-dasharray: 5;stroke-width: 1"></path>
+    </svg>
+
+    <p>one</p>
+    <p>two</p>
+    <p>three</p>
+
+    <script>
+        var svg = d3.selectAll('svg');
+            console.log(svg.empty());
+            console.log(svg.node());
+            console.log(svg.size());
+
+            d3.select('path')
+                .attr('id','p1')
+
+        svg.append('circle')
+            .attr('cx','150px')
+            .attr('cy','300px')
+            .attr('r','10px')
+            .attr('fill','red')
+            .attr('opacity',0.5)
+            .attr('id','c2');
+
+        var cx = d3.select('#c2').attr('cx');
+        console.log('cx:'+cx);
+
+        var path = d3.select('body').selectAll('path');
+        path.datum(7);
+            console.log(path.empty());
+            console.log(path.node());
+            console.log(path.size());
+
+            console.log(path)
+    </script>
+
+    <script>
+        var p = d3.select('body').selectAll('p');
+        var dataset = [{'a':'1','b':'2','c':'3'},
+                        {'a':'4','b':'5','c':'6'},
+                        {'a':'7','b':'8','c':'9'}];
+        p.data(dataset);
+        console.log(p)
+    </script>
+</body>
+</html>

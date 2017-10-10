@@ -10,8 +10,9 @@ https://docs.djangoproject.com/en/dev/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
-
+from __future__ import absolute_import, unicode_literals
 import os
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -37,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'gas',
+    'waterwall',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -76,6 +79,7 @@ WSGI_APPLICATION = 'gastempdisplay.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+        'STORAGE_ENGINE': 'InnoDB',
         'NAME': "gastempdisplay",
         "USER": "root",
         "PASSWORD": "",
@@ -127,3 +131,7 @@ STATICFILES_DIRS = [
 ]
 
 
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost//'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_TASK_SERIALIZER = 'json'

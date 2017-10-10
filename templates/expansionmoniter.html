@@ -1,0 +1,277 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{#{% block customcss %}#}
+{#    <style>#}
+{#        .tooltip{#}
+{#            position: absolute;#}
+{#            width: 120px;#}
+{#            height: auto;#}
+{#            font-family: simsun;#}
+{#            font-size: 14px;#}
+{#            text-align: center;#}
+{#            border-style: solid;#}
+{#            border-width: 1px;#}
+{#            background-color: white;#}
+{#            border-radius: 5px;#}
+{#        }#}
+{#    </style>#}
+{#{% endblock customcss %}#}
+
+{% block bread %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">水冷壁热膨胀监测
+{#                <small>高过出口</small>#}
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="{% url 'homepage' %}">Home</a>
+                </li>
+                <li >在线监测</li>
+                <li class="active">膨胀监测</li>
+            </ol>
+        </div>
+    </div>
+{% endblock bread %}
+
+{% block leftnavi %}
+    <div class="col-md-3">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                href="#collapseOne">
+                                在线监测
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="list-group">
+                                <a href="{% url 'siderbar' %}" class="list-group-item ">烟温监测</a>
+                                <a href="faq.html" class="list-group-item">壁温监测</a>
+                                <a href="{% url 'waterwall:expansion' %}" class="list-group-item active">膨胀监测</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                href="#collapseTwo">
+                                状态检修
+                            </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="list-group">
+                                <a href="gasmonitor.html" class="list-group-item active">烟温监测</a>
+                                <a href="faq.html" class="list-group-item">壁温监测</a>
+                                <a href="404.html" class="list-group-item">膨胀监测</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                href="#collapseThree">
+                                优化工况
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Nihil anim keffiyeh helvetica, craft beer labore wes anderson
+                                cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                                vice lomo.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endblock leftnavi %}
+
+{% block content %}
+    <div class="col-md-9">
+
+                <svg width="700" height="700" stroke="#fff" stroke-width="0.5"></svg>
+
+                <script type="text/javascript">
+                    var h =700;
+                    var w =700;
+                    var pading=20;
+
+                    var dateset = [
+                                  [ 5,     20 ],
+                                  [ 480,   90 ],
+                                  [ 250,   50 ],
+                                  [ 100,   33 ],
+                                  [ 330,   95 ],
+                                  [ 410,   12 ],
+                                  [ 475,   44 ],
+                                  [ 25,    67 ],
+                                  [ 85,    21 ],
+                                  [ 220,   88 ]
+                              ];
+
+                    var svg = d3.select("svg")
+{#                        .append('svg')#}
+{#                        .attr('width',w)#}
+{#                        .attr('height',h);#}
+
+
+                    var tooltip = d3.select('body')
+                        .append('div')
+                        .attr('position','absolute')
+                        .attr('width','120px')
+                        .attr('height','auto')
+                        .attr('font-size','14px')
+                        .attr('border-style','solid')
+                        .attr('border-width','1px')
+                        .style('opacity',0.0);
+
+                    var circles = svg.selectAll('circle')
+                        .data(dateset)
+                        .enter()
+                        .append('circle');
+
+                    var xscale = d3.scaleLinear()
+                        .domain([d3.min(
+                            dateset,function (d) {
+                                return d[0]
+                            }
+                        ),
+                        d3.max(dateset,function (d) {
+                            return d[0]
+                        })])
+                        .range([pading,w-2*pading]);
+
+                    var yscale = d3.scaleLinear()
+                        .domain([d3.min(
+                            dateset,function (d) {
+                                return d[1]
+                            }
+                        ),
+                        d3.max(dateset,function (d) {
+                            return d[1]
+                        })])
+                        .range([h-pading,pading]);
+
+                    var rscale = d3.scaleLinear()
+                        .domain([d3.min(
+                            dateset,function (d) {
+                                return d[1]
+                            }
+                        ),
+                        d3.max(dateset,function (d) {
+                            return d[1]
+                        })])
+                        .range([10,20]);
+
+                    var opacity_scale = d3.scaleLinear()
+                        .domain([d3.min(
+                            dateset,function (d) {
+                                return d[1]
+                            }
+                        ),
+                        d3.max(dateset,function (d) {
+                            return d[1]
+                        })])
+                        .range([0.5,1]);
+
+                    circles.attr('cx',function (d) {
+                        return xscale(d[0])
+                    })
+                        .attr('cy',function (d) {
+                            return yscale(d[1])
+                        })
+                        .attr('r',function (d) {
+                            return rscale(d[1])
+                        })
+                        .attr('fill','teal')
+                        .attr('opacity',function (d) {
+                            return opacity_scale(d[1])
+                        })
+{#                        .on('mouseover',function (d,i) {#}
+{#                            d3.select(this)#}
+{#                                .attr('fill','yellow');#}
+{#                        })#}
+                        .on('mouseout',function (d,i) {
+                            d3.select(this)
+                                .attr('fill','teal')
+                                .attr('opacity',function (d) {
+                                    return opacity_scale(d[1])
+                                })
+                        }).
+                        on('mouseover',function (d,i) {
+                        tooltip.html('鼠标响应')
+                            .style('left',(d3.event.pageX)+'px')
+                            .style('top',(d3.event.pageX+20)+'px')
+                            .style('opacity',1.0)
+                    });
+
+
+                    var texts = svg.selectAll('text')
+                        .data(dateset)
+                        .enter()
+                        .append('text')
+                        .text(function (d) {
+                            return d[0]+','+d[1]
+                        });
+
+                    texts.attr('x',function (d) {
+                        return Math.round(xscale(d[0]))
+                    })
+                        .attr('y',function (d) {
+                            return Math.round(yscale(d[1]))
+                        })
+                        .attr('font-size','11px')
+                        .attr('fill','red')
+
+                //    var xAxis = d3.svg.axis()
+                //        .scale(xscale)
+                //        .orient('bottom');
+
+                    svg.append("g")
+                        .call(d3.axisRight(yscale))
+                    .attr('transform',"translate("+pading+",0)");
+
+                    svg.append("g")
+                        .call(d3.axisBottom(xscale))
+                        .attr('transform',"translate(0,"+(h-pading)+")");
+
+
+                </script>
+
+                <table class="table table-hover table-striped">
+                   <caption>膨胀异常点</caption>
+                   <thead>
+                      <tr>
+                         <th>点名</th>
+                         <th>位置</th>
+                          <th>膨胀量(X)</th>
+                          <th>膨胀量(Y)</th>
+                          <th>膨胀量(Z)</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                      <tr>
+                         <td>KKS</td>
+                         <td><a>上水冷壁集箱左侧</a></td>
+                          <td>1000</td>
+                          <td>800</td>
+                          <td class="danger">50</td>
+                      </tr>
+
+                      <tr>
+                         <td>KKS2</td>
+                         <td>上水冷壁集箱右侧</td>
+                          <td>1200</td>
+                          <td class="danger">300</td>
+                          <td>500</td>
+                      </tr>
+                   </tbody>
+                </table>
+            </div>
+{% endblock content %}

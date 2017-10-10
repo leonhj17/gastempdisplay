@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block bread %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">烟温监测
+                <small>高过出口</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="{% url 'homepage' %}">Home</a>
+                </li>
+                <li >在线监测</li>
+                <li class="active">烟温监测</li>
+            </ol>
+        </div>
+    </div>
+{% endblock bread %}
+
+{% block leftnavi %}
+    <div class="col-md-3">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                href="#collapseOne">
+                                在线监测
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="list-group">
+                                <a href="{% url 'siderbar' %}" class="list-group-item active">烟温监测</a>
+                                <a href="faq.html" class="list-group-item">壁温监测</a>
+                                <a href="{% url 'waterwall:expansion' %}" class="list-group-item">膨胀监测</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                href="#collapseTwo">
+                                状态检修
+                            </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="list-group">
+                                <a href="gasmonitor.html" class="list-group-item active">烟温监测</a>
+                                <a href="faq.html" class="list-group-item">壁温监测</a>
+                                <a href="404.html" class="list-group-item">膨胀监测</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                href="#collapseThree">
+                                优化工况
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Nihil anim keffiyeh helvetica, craft beer labore wes anderson
+                                cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                                vice lomo.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endblock leftnavi %}
+
+{% block content %}
+    <div class="col-md-9">
+
+                <svg width="700" height="400" stroke="#fff" stroke-width="0.5"></svg>
+
+                <script>
+
+                    // Populate a grid of n×m values where -2 ≤ x ≤ 2 and -2 ≤ y ≤ 1.
+                    var n = 240, m = 125, values = new Array(n * m);
+                    for (var j = 0.5, k = 0; j < m; ++j) {
+                      for (var i = 0.5; i < n; ++i, ++k) {
+                        values[k] = goldsteinPrice(i / n * 4 - 2, 1 - j / m * 3);
+                      }
+                    }
+
+                    var svg = d3.select("svg"),
+                        width = +svg.attr("width"),
+                        height = +svg.attr("height");
+
+                    var thresholds = d3.range(1, 21)
+                        .map(function(p) { return Math.pow(2, p); });
+
+                    var contours = d3.contours()
+                        .size([n, m])
+                        .thresholds(thresholds);
+
+                    var color = d3.scaleLog()
+                        .domain(d3.extent(thresholds))
+                        .interpolate(function() { return d3.interpolateHclLong('orange','purple'); });
+
+                    svg.selectAll("path")
+                      .data(contours(values))
+                      .enter().append("path")
+                        .attr("d", d3.geoPath(d3.geoIdentity().scale(width / n)))
+                        .attr("fill", function(d) { return color(d.value); });
+
+                    // See https://en.wikipedia.org/wiki/Test_functions_for_optimization
+                    function goldsteinPrice(x, y) {
+                      return (1 + Math.pow(x + y + 1, 2) * (19 - 14 * x + 3 * x * x - 14 * y + 6 * x * x + 3 * y * y))
+                          * (30 + Math.pow(2 * x - 3 * y, 2) * (18 - 32 * x + 12 * x * x + 48 * y - 36 * x * y + 27 * y * y));
+                    }
+
+                </script>
+    </div>
+{% endblock content %}
+

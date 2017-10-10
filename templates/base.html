@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <style>
+        .tooltip{
+            position: absolute;
+            width: 120px;
+            height: auto;
+            font-family: simsun;
+            font-size: 14px;
+            text-align: center;
+            border-style: solid;
+            border-width: 1px;
+            background-color: white;
+            border-radius: 5px;
+        }
+    </style>
+
+    <title>Modern Business - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/modern-business.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    {% block customcss %}
+    {% endblock %}
+
+    {% block customjs %}
+    {% endblock %}
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3-contour.v1.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+</head>
+
+<body>
+
+    {% block navigation %}
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="about.html">About</a>
+                    </li>
+                    <li>
+                        <a href="services.html">Services</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="portfolio-1-col.html">1 Column Portfolio</a>
+                            </li>
+                            <li>
+                                <a href="portfolio-2-col.html">2 Column Portfolio</a>
+                            </li>
+                            <li>
+                                <a href="portfolio-3-col.html">3 Column Portfolio</a>
+                            </li>
+                            <li>
+                                <a href="portfolio-4-col.html">4 Column Portfolio</a>
+                            </li>
+                            <li>
+                                <a href="portfolio-item.html">Single Portfolio Item</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="blog-home-1.html">Blog Home 1</a>
+                            </li>
+                            <li>
+                                <a href="blog-home-2.html">Blog Home 2</a>
+                            </li>
+                            <li>
+                                <a href="blog-post.html">Blog Post</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="full-width.html">Full Width Page</a>
+                            </li>
+                            <li class="active">
+                                <a href="gasmonitor.html">Sidebar Page</a>
+                            </li>
+                            <li>
+                                <a href="faq.html">FAQ</a>
+                            </li>
+                            <li>
+                                <a href="404.html">404</a>
+                            </li>
+                            <li>
+                                <a href="pricing.html">Pricing Table</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    {% endblock %}
+
+    <!-- Page Content -->
+    <div class="container">
+
+        {% block bread %}
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">烟温监测
+                    <small>高过出口</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'homepage' %}">Home</a>
+                    </li>
+                    <li class="active">烟温监测</li>
+{#                    <li>下一级</li>#}
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        {% endblock %}
+
+        <!-- Content Row -->
+
+        <div class="row">
+            <!-- Sidebar Column -->
+            {% block leftnavi %}
+            <div class="col-md-3">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                href="#collapseOne">
+                                在线监测
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="list-group">
+{#                    <a href="{% url 'homepage' %}" class="list-group-item">Home</a>#}
+{#                    <a href="about.html" class="list-group-item">About</a>#}
+{#                    <a href="services.html" class="list-group-item">Services</a>#}
+{#                    <a href="contact.html" class="list-group-item">Contact</a>#}
+{#                    <a href="portfolio-1-col.html" class="list-group-item">1 Column Portfolio</a>#}
+{#                    <a href="portfolio-2-col.html" class="list-group-item">2 Column Portfolio</a>#}
+{#                    <a href="portfolio-3-col.html" class="list-group-item">3 Column Portfolio</a>#}
+{#                    <a href="portfolio-4-col.html" class="list-group-item">4 Column Portfolio</a>#}
+{#                    <a href="portfolio-item.html" class="list-group-item">Single Portfolio Item</a>#}
+{#                    <a href="blog-home-1.html" class="list-group-item">Blog Home 1</a>#}
+{#                    <a href="blog-home-2.html" class="list-group-item">Blog Home 2</a>#}
+{#                    <a href="blog-post.html" class="list-group-item">Blog Post</a>#}
+{#                    <a href="full-width.html" class="list-group-item">Full Width Page</a>#}
+                    <a href="{% url 'siderbar' %}" class="list-group-item active">烟温监测</a>
+                    <a href="faq.html" class="list-group-item">壁温监测</a>
+                    <a href="{% url 'waterwall:expansion' %}" class="list-group-item">膨胀监测</a>
+{#                    <a href="pricing.html" class="list-group-item">Pricing Table</a>#}
+                </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                href="#collapseTwo">
+                                状态检修
+                            </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+{#                        <div class="panel-body">#}
+{#                            Nihil anim keffiyeh helvetica, craft beer labore wes anderson#}
+{#                            cred nesciunt sapiente ea proident. Ad vegan excepteur butcher#}
+{#                            vice lomo.#}
+{#                        </div>#}
+                            <div class="list-group">
+{#                    <a href="{% url 'homepage' %}" class="list-group-item">Home</a>#}
+{#                    <a href="about.html" class="list-group-item">About</a>#}
+{#                    <a href="services.html" class="list-group-item">Services</a>#}
+{#                    <a href="contact.html" class="list-group-item">Contact</a>#}
+{#                    <a href="portfolio-1-col.html" class="list-group-item">1 Column Portfolio</a>#}
+{#                    <a href="portfolio-2-col.html" class="list-group-item">2 Column Portfolio</a>#}
+{#                    <a href="portfolio-3-col.html" class="list-group-item">3 Column Portfolio</a>#}
+{#                    <a href="portfolio-4-col.html" class="list-group-item">4 Column Portfolio</a>#}
+{#                    <a href="portfolio-item.html" class="list-group-item">Single Portfolio Item</a>#}
+{#                    <a href="blog-home-1.html" class="list-group-item">Blog Home 1</a>#}
+{#                    <a href="blog-home-2.html" class="list-group-item">Blog Home 2</a>#}
+{#                    <a href="blog-post.html" class="list-group-item">Blog Post</a>#}
+{#                    <a href="full-width.html" class="list-group-item">Full Width Page</a>#}
+                    <a href="gasmonitor.html" class="list-group-item active">烟温监测</a>
+                    <a href="faq.html" class="list-group-item">壁温监测</a>
+                    <a href="404.html" class="list-group-item">膨胀监测</a>
+{#                    <a href="pricing.html" class="list-group-item">Pricing Table</a>#}
+                </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                href="#collapseThree">
+                                优化工况
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Nihil anim keffiyeh helvetica, craft beer labore wes anderson
+                                cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                                vice lomo.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endblock %}
+            <!-- Content Column -->
+
+            {% block content %}
+            <div class="col-md-9">
+
+                <svg width="700" height="400" stroke="#fff" stroke-width="0.5"></svg>
+
+                <script>
+
+                    // Populate a grid of n×m values where -2 ≤ x ≤ 2 and -2 ≤ y ≤ 1.
+                    var n = 240, m = 125, values = new Array(n * m);
+                    for (var j = 0.5, k = 0; j < m; ++j) {
+                      for (var i = 0.5; i < n; ++i, ++k) {
+                        values[k] = goldsteinPrice(i / n * 4 - 2, 1 - j / m * 3);
+                      }
+                    }
+
+                    var svg = d3.select("svg"),
+                        width = +svg.attr("width"),
+                        height = +svg.attr("height");
+
+                    var thresholds = d3.range(1, 21)
+                        .map(function(p) { return Math.pow(2, p); });
+
+                    var contours = d3.contours()
+                        .size([n, m])
+                        .thresholds(thresholds);
+
+                    var color = d3.scaleLog()
+                        .domain(d3.extent(thresholds))
+                        .interpolate(function() { return d3.interpolateHclLong('orange','purple'); });
+
+                    svg.selectAll("path")
+                      .data(contours(values))
+                      .enter()
+                        .append("path")
+                        .attr("d", d3.geoPath(d3.geoIdentity().scale(width / n)))
+                        .attr("fill", function(d) { return color(d.value); });
+
+                    // See https://en.wikipedia.org/wiki/Test_functions_for_optimization
+                    function goldsteinPrice(x, y) {
+                      return (1 + Math.pow(x + y + 1, 2) * (19 - 14 * x + 3 * x * x - 14 * y + 6 * x * x + 3 * y * y))
+                          * (30 + Math.pow(2 * x - 3 * y, 2) * (18 - 32 * x + 12 * x * x + 48 * y - 36 * x * y + 27 * y * y));
+                    }
+
+                </script>
+
+                <script>
+                    var tooltip = d3.select('body').append('div')
+                        .attr('class',"tooltip")
+                </script>
+
+                <table class="table table-hover table-striped">
+                   <caption>膨胀异常点</caption>
+                   <thead>
+                      <tr>
+                         <th>点名</th>
+                         <th>位置</th>
+                          <th>膨胀量(X)</th>
+                          <th>膨胀量(Y)</th>
+                          <th>膨胀量(Z)</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                      <tr>
+                         <td>KKS</td>
+                         <td><a>上水冷壁集箱左侧</a></td>
+                          <td>1000</td>
+                          <td>800</td>
+                          <td class="danger">50</td>
+                      </tr>
+
+                      <tr>
+                         <td>KKS2</td>
+                         <td>上水冷壁集箱右侧</td>
+                          <td>1200</td>
+                          <td class="danger">300</td>
+                          <td>500</td>
+                      </tr>
+                   </tbody>
+                </table>
+            </div>
+            {% endblock %}
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3-contour.v1.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+<!--设置坐标轴文字格式-->
+    <style>
+        .axis text {
+            font-family: sans-serif;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        var linear = d3.scaleLinear()
+            .domain([-50,50])
+            .rangeRound([0,100])
+            .clamp(false);
+
+        var log = d3.scaleLog()
+            .base(10)
+            .domain([0.01,100])
+            .range([-2,2]);
+
+        var ticks = linear.ticks(5);
+
+        var ticksFormat = linear.tickFormat(5,"+");
+
+        for(var i=0;i<ticks.length;i++){
+            ticks[i] = ticksFormat(ticks[i]);
+        }
+
+        console.log(linear(560));
+        console.log(ticks);
+
+        console.log(log(2));
+        console.log(log(1/2));
+
+        var color = d3.scaleOrdinal(d3.schemeCategory10);
+        console.log(color(1));
+
+
+        var band = d3.scaleBand()
+            .domain([1,2,3,4,5])
+            .range([0,100]);
+
+        console.log(band(1));
+        console.log(band(2));
+        console.log(band(3));
+        console.log(band(4));
+        console.log(band(5));
+
+        var width = 1200;
+        var height = 600;
+        var padding = 30;
+        var dataset = d3.range(10);
+
+        var svg = d3.select('body')
+            .append('svg')
+            .attr('width',width)
+            .attr('height',height);
+
+        var xscale = d3.scaleLinear()
+            .domain([-50,50])
+            .range([padding,width-padding])
+            .clamp(false);
+
+        console.log(xscale.ticks(10));
+
+        var yscale = d3.scaleLinear()
+            .domain([0,100])
+            .range([height-padding,padding]);
+
+        var circle = svg.selectAll('circle')
+            .data(dataset)
+            .enter()
+            .append('circle')
+            .attr('cx',function (d,i) {
+                return xscale((Math.random()*2-1)*50);
+            })
+            .attr('cy',function (d,i) {
+                return yscale(Math.random()*100)
+            })
+            .attr('r',20)
+            .attr('fill',function (d,i) {
+                return color(i)
+            });
+
+        var xaxis = d3.axisBottom(xscale)
+            .ticks(10)
+            .tickSize(1)
+            .tickPadding(5)
+            .tickFormat(d3.format('.1f'));
+
+        var yaxis = d3.axisLeft(yscale)
+            .tickSize(1)
+            .tickPadding(5);
+
+        var x = svg.append('g')
+            .attr('transform','translate(0,'+(height-padding)+')')
+//            .attr('transform','rotate(45)')
+            .attr('class','axis')
+            .call(xaxis);
+
+        var y = svg.append('g')
+            .attr('transform','translate(30,0)')
+            .attr('class','axis')
+            .call(yaxis);
+
+        var line = svg.append('line')
+            .attr('x1',30)
+            .attr('x2',30)
+            .attr('y1',30)
+            .attr('y2',570);
+
+        var xgrid = svg.selectAll('.grid')
+            .data(xscale.ticks(10))
+            .enter()
+            .append('g');
+
+        xgrid.append('line')
+            .attr('x1',xscale)
+            .attr('x2',xscale)
+            .attr('y1',padding)
+            .attr('y2',height-padding)
+            .attr('stroke','#050')
+            .attr('stroke-dasharray','5 2');
+
+        var ygrid = svg.selectAll('.grid')
+            .data(yscale.ticks(10))
+            .enter()
+            .append('g');
+
+        ygrid.append('line')
+            .attr('x1',padding)
+            .attr('x2',width-padding)
+            .attr('y1',yscale)
+            .attr('y2',yscale)
+            .attr('stroke','#500')
+            .attr('stroke-dasharray','5 2');
+    </script>
+
+</body>
+</html>

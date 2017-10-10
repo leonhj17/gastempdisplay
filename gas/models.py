@@ -24,7 +24,7 @@ class KksDesc(models.Model):
 
 class Temp(models.Model):
     kks = models.ForeignKey(KksDesc, verbose_name=u'kks编号')
-    temp = models.FloatField(verbose_name=u'测量温度', max_length=1400, blank=True, null=True)
+    temp = models.FloatField(verbose_name=u'测量温度', max_length=10, blank=True, null=True)
     case_time = models.DateTimeField(verbose_name=u'测量工况时间')
     #
     class Meta:
