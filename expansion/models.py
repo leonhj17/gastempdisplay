@@ -35,7 +35,7 @@ class Time(models.Model):
 class MeasureValue(models.Model):
     kks = models.ForeignKey(ExpansionKks, verbose_name=u'膨胀指示器KKS')
     value = models.DecimalField(max_digits=6, decimal_places=2, verbose_name=u'实测膨胀量')
-    case_time = models.ForeignKey(Time, verbose_name=u'测量时间')
+    case_time = models.DateTimeField(verbose_name=u'测量时间')
 
     class Meta:
         verbose_name = u'膨胀实测值'

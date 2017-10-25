@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'waterwall',
     # 'django_celery_results',
     'expansion',
+    'xadmin',
+    'reversion',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [

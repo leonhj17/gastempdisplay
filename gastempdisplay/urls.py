@@ -16,9 +16,12 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic.base import TemplateView
+from xadmin.plugins import xversion
+import xadmin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^xadmin/', include(xadmin.site.urls)),
     url(r'^index/', TemplateView.as_view(template_name='index.html'), name='homepage'),
     url(r'^siderbar/', TemplateView.as_view(template_name='gasmonitor.html'), name='siderbar'),
     url(r'^waterwall/', include('waterwall.urls', namespace='waterwall')),
