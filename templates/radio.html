@@ -17,6 +17,8 @@
     </style>
 </head>
 <body>
+    <button type="button" onclick="add()">增加</button>
+    <button type="button" onclick="sub()">减少</button>
 
     <script>
         var linear = d3.scaleLinear()
@@ -60,7 +62,7 @@
         var width = 1200;
         var height = 600;
         var padding = 30;
-        var dataset = d3.range(10);
+        var dataset = d3.range(15);
 
         var svg = d3.select('body')
             .append('svg')
@@ -78,7 +80,52 @@
             .domain([0,100])
             .range([height-padding,padding]);
 
-        var circle = svg.selectAll('circle')
+        function drawcircle() {
+            var circleupdate = svg.selectAll('circle')
+                .data(dataset);
+
+            var circleenter = circleupdate.enter();
+
+            var circleexit = circleupdate.exit();
+
+            circleupdate.transition()
+                .delay(1000)
+                .duration(2000)
+                .attr('cx',function (d,i) {
+                    return xscale((Math.random()*2-1)*50);
+                })
+                .attr('cy',function (d,i) {
+                return yscale(Math.random()*100)
+                })
+                .attr('r',20)
+                .attr('fill',function (d,i) {
+                return color(i)
+                });
+
+            circleenter.append('circle')
+                .transition()
+                .delay(1000)
+                .duration(2000)
+                .attr('cx',function (d,i) {
+                    return xscale((Math.random()*2-1)*50);
+                })
+                .attr('cy',function (d,i) {
+                return yscale(Math.random()*100)
+                })
+                .attr('r',20)
+                .attr('fill',function (d,i) {
+                return color(i)
+                });
+
+            circleexit.attr('opacity',1)
+                .transition()
+                .delay(1000)
+                .duration(2000)
+                .attr('opacity',0)
+                .remove();
+        }
+
+/*        var circle = svg.selectAll('circle')
             .data(dataset)
             .enter()
             .append('circle')
@@ -92,7 +139,7 @@
             .attr('fill',function (d,i) {
                 return color(i)
             });
-
+*/
         var xaxis = d3.axisBottom(xscale)
             .ticks(10)
             .tickSize(1)
@@ -145,6 +192,31 @@
             .attr('y2',yscale)
             .attr('stroke','#500')
             .attr('stroke-dasharray','5 2');
+
+        function drawRect() {
+            svg.append('rect')
+                .attr('fill','steelblue')
+                .attr('x',100)
+                .attr('y',100)
+                .attr('width',100)
+                .attr('height',100)
+                .transition()
+                .delay(1000)
+                .duration(2000)
+                .attr('width',300)
+                .remove()
+        }
+        
+        function add() {
+            dataset.push(Math.random());
+        }
+
+        function sub() {
+            dataset.pop();
+        }
+
+
+        setInterval(drawcircle,3000)
     </script>
 
 </body>

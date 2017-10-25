@@ -31,4 +31,7 @@ class Temp(models.Model):
         verbose_name = u'测点温度'
         verbose_name_plural = verbose_name
 
+    def __unicode__(self):
+        return self.temp
+
 
