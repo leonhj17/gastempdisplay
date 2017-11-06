@@ -33,7 +33,7 @@ class Time(models.Model):
 
 
 class MeasureValue(models.Model):
-    kks = models.ForeignKey(ExpansionKks, verbose_name=u'膨胀指示器KKS')
+    kks = models.ForeignKey(ExpansionKks, verbose_name=u'膨胀指示器KKS', related_name='measurevalue')
     value = models.DecimalField(max_digits=6, decimal_places=2, verbose_name=u'实测膨胀量')
     case_time = models.DateTimeField(verbose_name=u'测量时间')
 
@@ -42,5 +42,5 @@ class MeasureValue(models.Model):
         verbose_name_plural = verbose_name
 
     def __unicode__(self):
-        return self.value
+        return str(self.value)
 
