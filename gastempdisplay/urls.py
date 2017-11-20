@@ -21,9 +21,10 @@ import xadmin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^xadmin/', include(xadmin.site.urls)),
+    url(r'^xadmin/', include(xadmin.site.urls), name='xadmin'),
     url(r'^index/', TemplateView.as_view(template_name='index.html'), name='homepage'),
     url(r'^siderbar/', TemplateView.as_view(template_name='gasmonitor.html'), name='siderbar'),
     url(r'^waterwall/', include('waterwall.urls', namespace='waterwall')),
-    url(r'^expansion/', include('expansion.urls', namespace='expansion'))
+    url(r'^expansion/', include('expansion.urls', namespace='expansion')),
+    url(r'^bootstrap/', TemplateView.as_view(template_name='expansionbase.html'))
 ]

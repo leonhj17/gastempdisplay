@@ -1,10 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load staticfiles %}
     <meta charset="UTF-8">
+
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/modern-business.css' %}">
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/d3.V4.min.js' %}"></script>
+
+
     <title>Title</title>
 </head>
 <body>
 
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">
+              <img alt="Brand" src="{% static 'images/brand.png' %}">
+          </a>
+            <a class="navbar-brand" href="#">
+              WSH
+          </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="#">启动 <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">偏差</a></li>
+            <li><a href="#">报警 <span class="badge">4</span></a></li>
+            <li><a href="#">后台</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <button class="btn btn-default center-block" type="button" id="f5">刷新</button>
+    <button class="btn btn-default center-block" type="button" id="query_vector">读数</button>
+    <!-- 测试ajax -->
+    <script>
+        var result = {};
+        var query_vector = {};
+        $(document).ready(function () {
+            $("#f5").click(function () {
+                $.getJSON('{% url 'expansion:f5' %}', function(ret){
+                    result = ret;
+                    return result;
+                })
+            })
+        });
+
+        $(document).ready(function () {
+            $("#query_vector").click(function () {
+                $.getJSON('{% url 'expansion:query_vector' %}', function(ret){
+                    query_vector = ret;
+                    return query_vector;
+                })
+            })
+        });
+
+    </script>
 </body>
+
+
 </html>

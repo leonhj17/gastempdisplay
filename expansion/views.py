@@ -1,4 +1,5 @@
 # coding:utf-8
+import json
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
@@ -49,3 +50,64 @@ class MeasureValueViewset(viewsets.ModelViewSet):
     queryset = MeasureValue.objects.filter(**time).filter(kks__vector__in=['z'])
     # queryset = MeasureValue.objects.all()[:10]
     serializer_class = MeasureValueSerializer
+
+
+def f5_ajax(request):
+    f5_dict = [{'a': 1, 'b': 2, 'c': 3}, {'a': 2, 'b': 3, 'c': 4}]
+    print u'执行'
+    return HttpResponse(json.dumps(f5_dict), content_type='application/json')
+
+
+def rename_key(item):
+    if isinstance(item, dict) and item.get('kks__vector'):
+        item[item['kks__vector']] = str(item['value'])
+        item['case_time'] = str(item['case_time'])
+        del item['kks__vector']
+        del item['value']
+    return item
+
+
+def query_vector(request):
+    # 查询x，y，z三个方向上膨胀量
+    queryx = MeasureValue.objects.values(
+        'kks__location',
+        'kks__ab',
+        'kks__vector',
+        'value',
+        'case_time').filter(
+        case_time=MeasureValue.objects.values('case_time').last()['case_time']
+    ).filter(kks__vector=u'x')
+
+    queryy = MeasureValue.objects.values(
+        'kks__location',
+        'kks__ab',
+        'kks__vector',
+        'value',
+        'case_time').filter(
+        case_time=MeasureValue.objects.values('case_time').last()['case_time']
+    ).filter(kks__vector=u'y')
+
+    queryz = MeasureValue.objects.values(
+        'kks__location',
+        'kks__ab',
+        'kks__vector',
+        'value',
+        'case_time').filter(
+        case_time=MeasureValue.objects.values('case_time').last()['case_time']
+    ).filter(kks__vector=u'z')
+
+    # 字典键值替换
+    queryx = map(rename_key, queryx)
+    queryy = map(rename_key, queryy)
+    queryz = map(rename_key, queryz)
+
+    # 字典合并
+    func = lambda dict1, dict2: dict(dict1, **dict2)
+    query = map(func, map(func, queryx, queryy), queryz)
+    print u'取数'
+    print query
+    return HttpResponse(json.dumps(query), content_type='application/json')
+    # return render(
+    #     request, 'expansionbase.html',
+    #     {'query': query}
+    # )

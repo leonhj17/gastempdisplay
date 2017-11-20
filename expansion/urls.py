@@ -11,6 +11,8 @@ router.register(r'value', views.MeasureValueViewset)
 
 # 此处（?P<>）格式标记参数名称
 urlpatterns = [
+    url(r'^f5/', views.f5_ajax, name='f5'),
+    url(r'^query_vector', views.query_vector, name='query_vector'),
     url(r'^funview/', views.funview),
     url(r'^addview/', views.addview, name='add'),
     url(r'^addview2/(\d+)/(\d+)', views.add_redirect),
