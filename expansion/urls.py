@@ -13,6 +13,7 @@ router.register(r'value', views.MeasureValueViewset)
 urlpatterns = [
     url(r'^f5/', views.f5_ajax, name='f5'),
     url(r'^query_vector', views.query_vector, name='query_vector'),
+    url(r'^query_ab', views.query_ab, name='query_ab'),
     url(r'^funview/', views.funview),
     url(r'^addview/', views.addview, name='add'),
     url(r'^addview2/(\d+)/(\d+)', views.add_redirect),

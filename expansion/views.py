@@ -66,6 +66,18 @@ def rename_key(item):
         del item['value']
     return item
 
+def restruct(item):
+    if isinstance(item, dict) and item.get('kks__ab'):
+        item[item['kks__ab']] = {
+            'x': item.get('x', 0),
+            'y': item.get('y', 0),
+            'z': item.get('z', 0)
+        }
+        del item['kks__ab']
+        del item['x']
+        del item['y']
+        del item['z']
+    return item
 
 def query_vector(request):
     # 查询x，y，z三个方向上膨胀量
@@ -111,3 +123,79 @@ def query_vector(request):
     #     request, 'expansionbase.html',
     #     {'query': query}
     # )
+
+
+def query_ab(request):
+    query_lx = MeasureValue.objects.values(
+        'kks__location',
+        'kks__ab',
+        'kks__vector',
+        'value',
+        'case_time').filter(
+        case_time=MeasureValue.objects.values('case_time').last()['case_time']
+    ).filter(kks__vector=u'x').filter(kks__ab='left')
+
+    query_ly = MeasureValue.objects.values(
+        'kks__location',
+        'kks__ab',
+        'kks__vector',
+        'value',
+        'case_time').filter(
+        case_time=MeasureValue.objects.values('case_time').last()['case_time']
+    ).filter(kks__vector=u'y').filter(kks__ab='left')
+
+    query_lz = MeasureValue.objects.values(
+        'kks__location',
+        'kks__ab',
+        'kks__vector',
+        'value',
+        'case_time').filter(
+        case_time=MeasureValue.objects.values('case_time').last()['case_time']
+    ).filter(kks__vector=u'z').filter(kks__ab='left')
+
+    query_rx = MeasureValue.objects.values(
+        'kks__location',
+        'kks__ab',
+        'kks__vector',
+        'value',
+        'case_time').filter(
+        case_time=MeasureValue.objects.values('case_time').last()['case_time']
+    ).filter(kks__vector=u'x').filter(kks__ab='right')
+
+    query_ry = MeasureValue.objects.values(
+        'kks__location',
+        'kks__ab',
+        'kks__vector',
+        'value',
+        'case_time').filter(
+        case_time=MeasureValue.objects.values('case_time').last()['case_time']
+    ).filter(kks__vector=u'y').filter(kks__ab='right')
+
+    query_rz = MeasureValue.objects.values(
+        'kks__location',
+        'kks__ab',
+        'kks__vector',
+        'value',
+        'case_time').filter(
+        case_time=MeasureValue.objects.values('case_time').last()['case_time']
+    ).filter(kks__vector=u'z').filter(kks__ab='right')
+
+    query_lx = map(rename_key, query_lx)
+    query_ly = map(rename_key, query_ly)
+    query_lz = map(rename_key, query_lz)
+    query_rx = map(rename_key, query_rx)
+    query_ry = map(rename_key, query_ry)
+    query_rz = map(rename_key, query_rz)
+
+    func = lambda dict1, dict2: dict(dict1, **dict2)
+    query_l = map(func, map(func, query_lx, query_ly), query_lz)
+    query_r = map(func, map(func, query_rx, query_ry), query_rz)
+
+    query_l = map(restruct, query_l)
+    query_r = map(restruct, query_r)
+
+    query = map(func, query_l, query_r)
+
+    print u'取数'
+    print query
+    return HttpResponse(json.dumps(query), content_type='application/json')
