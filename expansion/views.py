@@ -126,6 +126,7 @@ def query_vector(request):
 
 
 def query_ab(request):
+    # 按照左右侧查询各个方向膨胀量
     query_lx = MeasureValue.objects.values(
         'kks__location',
         'kks__ab',
@@ -180,6 +181,7 @@ def query_ab(request):
         case_time=MeasureValue.objects.values('case_time').last()['case_time']
     ).filter(kks__vector=u'z').filter(kks__ab='right')
 
+    # 修改键值
     query_lx = map(rename_key, query_lx)
     query_ly = map(rename_key, query_ly)
     query_lz = map(rename_key, query_lz)
@@ -187,13 +189,16 @@ def query_ab(request):
     query_ry = map(rename_key, query_ry)
     query_rz = map(rename_key, query_rz)
 
+    # 按左右侧组合膨胀量
     func = lambda dict1, dict2: dict(dict1, **dict2)
     query_l = map(func, map(func, query_lx, query_ly), query_lz)
     query_r = map(func, map(func, query_rx, query_ry), query_rz)
 
+    # 修改数据结构
     query_l = map(restruct, query_l)
     query_r = map(restruct, query_r)
 
+    # 合并左右侧膨胀量
     query = map(func, query_l, query_r)
 
     print u'取数'

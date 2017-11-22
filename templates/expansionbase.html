@@ -3,7 +3,6 @@
 <head>
     {% load staticfiles %}
     <meta charset="UTF-8">
-
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/modern-business.css' %}">
@@ -11,7 +10,6 @@
     <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/d3.V4.min.js' %}"></script>
-
 
     <title>Title</title>
 </head>
@@ -47,8 +45,52 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-    <button class="btn btn-default center-block" type="button" id="f5">刷新</button>
-    <button class="btn btn-default center-block" type="button" id="query_vector">读数</button>
+    <div class="container-fluid">
+        <!--
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn btn-default center-block" type="button" id="f5">刷新</button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-default center-block" type="button" id="query_vector">读数</button>
+            </div>
+        </div>
+        -->
+
+        <div class="row">
+            <div class="col-md-7">
+                <div class="row">
+                    <h5 class="text-center">XY散点图</h5>
+                    <svg height="250" width="580" id="xy">
+                        <rect height="250" width="580" fill="green" opacity="0.5"></rect>
+                    </svg>
+                </div>
+                <div class="row">
+                    <h5 class="text-center">z直方图</h5>
+                    <svg height="150" width="580" id="z">
+                        <rect height="150" width="580" fill="green" opacity="0.5"></rect>
+                    </svg>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <h5 class="text-center">左右侧偏差折线图</h5>
+                <svg height="440" width="420" id="rl">
+                    <rect height="440" width="420" fill="green" opacity="0.5"></rect>
+                </svg>
+            </div>
+        </div>
+
+        <div class="row">
+            <h5 class="text-center">变化率直方图</h5>
+            <svg height="150" width="1007" id="rate">
+                <rect height="150" width="1007" fill="green" opacity="0.5"></rect>
+            </svg>
+        </div>
+    </div>
+
+
+
+
     <!-- 测试ajax -->
     <script>
         var result = {};
