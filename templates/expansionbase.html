@@ -46,16 +46,6 @@
     </nav>
 
     <div class="container-fluid">
-        <!--
-        <div class="row">
-            <div class="col-md-6">
-                <button class="btn btn-default center-block" type="button" id="f5">刷新</button>
-            </div>
-            <div class="col-md-6">
-                <button class="btn btn-default center-block" type="button" id="query_vector">读数</button>
-            </div>
-        </div>
-        -->
 
         <div class="row">
             <div class="col-md-7">
@@ -86,13 +76,20 @@
                 <rect height="150" width="1007" fill="green" opacity="0.5"></rect>
             </svg>
         </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn btn-default center-block" type="button" id="f5">刷新</button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-default center-block" type="button" id="query_vector">读数</button>
+            </div>
+        </div>
     </div>
-
-
-
 
     <!-- 测试ajax -->
     <script>
+        var num = 0;
         var result = {};
         var query_vector = {};
         $(document).ready(function () {
@@ -105,13 +102,23 @@
         });
 
         $(document).ready(function () {
-            $("#query_vector").click(function () {
-                $.getJSON('{% url 'expansion:query_ab' %}', function(ret){
-                    query_vector = ret;
-                    return query_vector;
-                })
-            })
+            $.getJSON('{% url 'expansion:query_ab' %}', function(ret){
+                query_vector = ret;
+                return query_vector;
+            });
+            setInterval(get_xyz, 30000)
         });
+
+        function get_xyz() {
+            $.getJSON('{% url 'expansion:query_ab' %}', function(ret){
+                query_vector = ret;
+                num = num + 1;
+                console.log(num);
+                return query_vector;
+            })
+        }
+
+
 
     </script>
 </body>
