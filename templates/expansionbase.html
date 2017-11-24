@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     {% load staticfiles %}
+    {% csrf_token %}
     <meta charset="UTF-8">
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
@@ -10,6 +11,8 @@
     <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/d3.V4.min.js' %}"></script>
+
+    <script src="{% static 'js/monitorpage.js' %}"></script>
 
     <title>Title</title>
 </head>
@@ -52,7 +55,7 @@
                 <div class="row">
                     <h5 class="text-center">XY散点图</h5>
                     <svg height="250" width="580" id="xy">
-                        <rect height="250" width="580" fill="green" opacity="0.5"></rect>
+                        <!--<rect height="250" width="580" fill="green" opacity="0.5"></rect>-->
                     </svg>
                 </div>
                 <div class="row">
@@ -76,51 +79,141 @@
                 <rect height="150" width="1007" fill="green" opacity="0.5"></rect>
             </svg>
         </div>
-
-        <div class="row">
+        <!--<div class="row">
             <div class="col-md-6">
                 <button class="btn btn-default center-block" type="button" id="f5">刷新</button>
             </div>
             <div class="col-md-6">
                 <button class="btn btn-default center-block" type="button" id="query_vector">读数</button>
             </div>
-        </div>
+        </div>-->
     </div>
 
     <!-- 测试ajax -->
     <script>
-        var num = 0;
-        var result = {};
-        var query_vector = {};
-        $(document).ready(function () {
-            $("#f5").click(function () {
-                $.getJSON('{% url 'expansion:f5' %}', function(ret){
-                    result = ret;
-                    return result;
-                })
-            })
-        });
+{#        query_vector数据用以绘制xyz散点图及z方向柱状图#}
+{#        query_ab数据用以绘制左右侧偏差曲线图#}
+        var query_vector = [];
+        var query_ab = [];
 
-        $(document).ready(function () {
+        function get_ab() {
             $.getJSON('{% url 'expansion:query_ab' %}', function(ret){
-                query_vector = ret;
-                return query_vector;
-            });
-            setInterval(get_xyz, 30000)
-        });
-
-        function get_xyz() {
-            $.getJSON('{% url 'expansion:query_ab' %}', function(ret){
-                query_vector = ret;
-                num = num + 1;
-                console.log(num);
-                return query_vector;
+                query_ab = ret;
+                return query_ab;
             })
         }
 
+        function get_vector() {
+            $.getJSON('{% url 'expansion:query_vector' %}',function(ret){
+                fig_xy(ret)
+            })
+        }
+
+        $(document).ready(function () {
+            get_vector();
+            get_ab();
+            setInterval(get_vector, 30000);
+            setInterval(get_ab, 30000);
+        });
+
+{#    var width = 580;#}
+{#    var height = 250;#}
+{#    var padding = {'left':30,'right':20,'top':20,'bottom':30};#}
+{#    var svg_xy = d3.select('#xy');#}
+{##}
+{#    var xscale = d3.scaleLinear()#}
+{#        .domain([0,1])#}
+{#        .range([padding.left,width-padding.right]);#}
+{##}
+{#    var yscale = d3.scaleLinear()#}
+{#        .domain([0,1])#}
+{#        .range([height-padding.bottom,padding.top]);#}
+{##}
+{#    var pointupdate = svg_xy.selectAll('circle')#}
+{#        .data(query_vector);#}
+{##}
+{#    var pointenter = pointupdate.enter();#}
+{##}
+{#    var pointexit = pointupdate.exit();#}
+{##}
+{#    pointupdate.attr('cx',function (d,i) {#}
+{#        return xscale(parseFloat(d.x))#}
+{#    })#}
+{#        .attr('cy',function (d,i) {#}
+{#            return yscale(parseFloat(d.y))#}
+{#        })#}
+{#        .attr('r',15)#}
+{#        .attr('fill','green');#}
+{##}
+{#    pointenter.append('circle')#}
+{#        .attr('cx',function (d,i) {#}
+{#        return xscale(parseFloat(d.x))#}
+{#    })#}
+{#        .attr('cy',function (d,i) {#}
+{#            return yscale(parseFloat(d.y))#}
+{#        })#}
+{#        .attr('r',15)#}
+{#        .attr('fill','green');#}
+{##}
+{#    pointexit.remove();#}
 
 
     </script>
+
+    <script>
+
+{#    var query_vector=[{'x':100/300,'y':150/300},{'x':150/300,'y':150/300},{'x':100/300,'y':200/300},{'x':150/300,'y':200/300}];#}
+
+    function fig_xy(data) {
+        var width = 580;
+        var height = 250;
+        var padding = {'left':30,'right':20,'top':20,'bottom':30};
+
+        var xscale = d3.scaleLinear()
+            .domain([0,1])
+            .range([padding.left,width-padding.right]);
+
+        var yscale = d3.scaleLinear()
+            .domain([0,1])
+            .range([height-padding.bottom,padding.top]);
+
+        var newsvg = d3.select('#xy');
+
+        var svgupdate = newsvg.selectAll('circle')
+            .data(data);
+
+        var svgenter = svgupdate.enter();
+
+        var svgexit = svgupdate.exit();
+
+        svgupdate.attr('cx',function (d,i) {
+                return xscale(parseFloat(d.x))
+            })
+            .attr('cy',function (d,i) {
+                return yscale(parseFloat(d.y))
+            })
+            .attr('r',10)
+            .attr('fill','green')
+            .attr('opacity',0.5);
+
+        svgenter.append('circle')
+            .attr('cx',function (d,i) {
+                return xscale(d.x)
+            })
+            .attr('cy',function (d,i) {
+                return yscale(d.y)
+            })
+            .attr('r',10)
+            .attr('fill','green')
+            .attr('opacity',0.5);
+
+        svgexit.remove();
+        }
+
+{#    fig_xy(query_vector)#}
+    </script>
+
+
 </body>
 
 

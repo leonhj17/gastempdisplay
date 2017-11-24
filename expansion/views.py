@@ -116,7 +116,7 @@ def query_vector(request):
     # 字典合并
     func = lambda dict1, dict2: dict(dict1, **dict2)
     query = map(func, map(func, queryx, queryy), queryz)
-    print query
+    print u'取vector'
     return HttpResponse(json.dumps(query), content_type='application/json')
     # return render(
     #     request, 'expansionbase.html',
@@ -200,5 +200,5 @@ def query_ab(request):
     # 合并左右侧膨胀量
     query = map(func, query_l, query_r)
 
-    print u'取数'
+    print u'取ab'
     return HttpResponse(json.dumps(query), content_type='application/json')
