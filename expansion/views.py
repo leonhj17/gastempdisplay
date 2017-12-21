@@ -79,7 +79,24 @@ def restruct(item):
         del item['z']
     return item
 
+def restruct_time(item, time):
+    if isinstance(item, dict) and item.get('case_time'):
+        item[time] = {
+            'case_time': str(item.get('case_time', '0')),
+            'value': str(item.get('value', 0))
+        }
+        del item['case_time']
+        del item['value']
+    return item
+
+time = MeasureValue.objects.values('case_time').order_by('case_time')
+time_iter = 0
+time_iter_rl = 0
+time_iter_rate = 0
+
+
 def query_vector(request):
+    global time_iter
     # 查询x，y，z三个方向上膨胀量
     queryx = MeasureValue.objects.values(
         'kks__location',
@@ -87,7 +104,8 @@ def query_vector(request):
         'kks__vector',
         'value',
         'case_time').filter(
-        case_time=MeasureValue.objects.values('case_time').last()['case_time']
+        case_time=time[time_iter]['case_time']
+        # case_time=MeasureValue.objects.values('case_time').last()['case_time']
     ).filter(kks__vector=u'x')
 
     queryy = MeasureValue.objects.values(
@@ -96,7 +114,8 @@ def query_vector(request):
         'kks__vector',
         'value',
         'case_time').filter(
-        case_time=MeasureValue.objects.values('case_time').last()['case_time']
+        case_time=time[time_iter]['case_time']
+        # case_time=MeasureValue.objects.values('case_time').last()['case_time']
     ).filter(kks__vector=u'y')
 
     queryz = MeasureValue.objects.values(
@@ -105,7 +124,8 @@ def query_vector(request):
         'kks__vector',
         'value',
         'case_time').filter(
-        case_time=MeasureValue.objects.values('case_time').last()['case_time']
+        case_time=time[time_iter]['case_time']
+        # case_time=MeasureValue.objects.values('case_time').last()['case_time']
     ).filter(kks__vector=u'z')
 
     # 字典键值替换
@@ -117,6 +137,8 @@ def query_vector(request):
     func = lambda dict1, dict2: dict(dict1, **dict2)
     query = map(func, map(func, queryx, queryy), queryz)
     print u'取vector'
+    time_iter += 100
+    print time_iter
     return HttpResponse(json.dumps(query), content_type='application/json')
     # return render(
     #     request, 'expansionbase.html',
@@ -125,6 +147,7 @@ def query_vector(request):
 
 
 def query_ab(request):
+    global time_iter_rl
     # 按照左右侧查询各个方向膨胀量
     query_lx = MeasureValue.objects.values(
         'kks__location',
@@ -132,7 +155,8 @@ def query_ab(request):
         'kks__vector',
         'value',
         'case_time').filter(
-        case_time=MeasureValue.objects.values('case_time').last()['case_time']
+        # case_time=MeasureValue.objects.values('case_time').last()['case_time']
+        case_time=time[time_iter_rl]['case_time']
     ).filter(kks__vector=u'x').filter(kks__ab='left')
 
     query_ly = MeasureValue.objects.values(
@@ -141,7 +165,8 @@ def query_ab(request):
         'kks__vector',
         'value',
         'case_time').filter(
-        case_time=MeasureValue.objects.values('case_time').last()['case_time']
+        # case_time=MeasureValue.objects.values('case_time').last()['case_time']
+        case_time=time[time_iter_rl]['case_time']
     ).filter(kks__vector=u'y').filter(kks__ab='left')
 
     query_lz = MeasureValue.objects.values(
@@ -150,7 +175,8 @@ def query_ab(request):
         'kks__vector',
         'value',
         'case_time').filter(
-        case_time=MeasureValue.objects.values('case_time').last()['case_time']
+        # case_time=MeasureValue.objects.values('case_time').last()['case_time']
+        case_time=time[time_iter_rl]['case_time']
     ).filter(kks__vector=u'z').filter(kks__ab='left')
 
     query_rx = MeasureValue.objects.values(
@@ -159,7 +185,8 @@ def query_ab(request):
         'kks__vector',
         'value',
         'case_time').filter(
-        case_time=MeasureValue.objects.values('case_time').last()['case_time']
+        # case_time=MeasureValue.objects.values('case_time').last()['case_time']
+        case_time=time[time_iter_rl]['case_time']
     ).filter(kks__vector=u'x').filter(kks__ab='right')
 
     query_ry = MeasureValue.objects.values(
@@ -168,7 +195,8 @@ def query_ab(request):
         'kks__vector',
         'value',
         'case_time').filter(
-        case_time=MeasureValue.objects.values('case_time').last()['case_time']
+        # case_time=MeasureValue.objects.values('case_time').last()['case_time']
+        case_time=time[time_iter_rl]['case_time']
     ).filter(kks__vector=u'y').filter(kks__ab='right')
 
     query_rz = MeasureValue.objects.values(
@@ -177,7 +205,8 @@ def query_ab(request):
         'kks__vector',
         'value',
         'case_time').filter(
-        case_time=MeasureValue.objects.values('case_time').last()['case_time']
+        # case_time=MeasureValue.objects.values('case_time').last()['case_time']
+        case_time=time[time_iter_rl]['case_time']
     ).filter(kks__vector=u'z').filter(kks__ab='right')
 
     # 修改键值
@@ -199,6 +228,38 @@ def query_ab(request):
 
     # 合并左右侧膨胀量
     query = map(func, query_l, query_r)
-
+    time_iter_rl += 100
+    print 'time_rl'+str(time_iter_rl)
     print u'取ab'
+    return HttpResponse(json.dumps(query), content_type='application/json')
+
+
+def query_rate(request):
+    global time_iter_rate
+    query_now = MeasureValue.objects.values(
+        'kks__location',
+        'kks__ab',
+        'kks__vector',
+        'value',
+        'case_time').filter(
+        # case_time=MeasureValue.objects.values('case_time').last()['case_time']
+        case_time=time[time_iter_rate+90]['case_time']
+    )
+
+    query_before = MeasureValue.objects.values(
+        'kks__location',
+        'kks__ab',
+        'kks__vector',
+        'value',
+        'case_time').filter(
+        # case_time=MeasureValue.objects.values('case_time').last()['case_time']
+        case_time=time[time_iter_rate]['case_time']
+    )
+
+    query_now = map(restruct_time, query_now, ['now']*query_now.__len__())
+    query_before = map(restruct_time, query_before, ['before']*query_before.__len__())
+
+    func = lambda dict1, dict2: dict(dict1, **dict2)
+    query = map(func, query_now, query_before)
+    time_iter_rate += 90
     return HttpResponse(json.dumps(query), content_type='application/json')

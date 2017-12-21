@@ -16,22 +16,6 @@
     <script src="{% static 'js/monitorpage.js' %}"></script>
     <script src="{% static 'js/screen.js' %}"></script>
 
-    <script type="text/javascript">
-        $(function() {
-        var svgRootxy = $("#xy")[0];
-        adjustToFreezeWidth(svgRootxy,0.58);
-
-        var svgRootz = $("#z")[0];
-        adjustToFreezeWidth(svgRootz,0.58);
-
-        var svgRootrl = $("#rl")[0];
-        adjustToFreezeWidth(svgRootrl,0.42);
-
-        var svgRootradio = $("#rate")[0];
-        adjustToFreezeWidth(svgRootradio,1);
-        });
-    </script>
-
     <style>
         svg {
 {#            background-color:  whitesmoke;#}
@@ -79,26 +63,26 @@
             <div class="col-md-7">
                 <div class="row">
                     <h5 class="text-left">XY方向膨胀</h5>
-                    <svg id="xy" viewBox="0 0 580 200" preserveAspectRatio="xMinYMin meet">
+                    <svg height="200" width="580" id="xy">
                         <!--<rect height="250" width="580" fill="green" opacity="0.5"></rect>-->
                     </svg>
                 </div>
                 <div class="row">
                     <h5 class="text-left">Z方向膨胀</h5>
-                    <svg viewBox="0 0 580 200" id="z" preserveAspectRatio="xMinYMin meet">
+                    <svg height="200" width="580" id="z">
                     </svg>
                 </div>
             </div>
             <div class="col-md-5">
                 <h5 class="text-left">左右侧膨胀比例</h5>
-                <svg viewBox="0 0 420 440" id="rl" preserveAspectRatio="xMinYMin meet">
+                <svg height="440" width="420" id="rl">
                 </svg>
             </div>
         </div>
 
         <div class="row">
             <h5 class="text-left">各方向膨胀变化率</h5>
-            <svg viewBox="0 0 1200 150" id="rate" preserveAspectRatio="xMinYMin meet">
+            <svg height="150" width="1007" id="rate">
 
             </svg>
         </div>
@@ -131,7 +115,7 @@
 
         function get_rate() {
             $.getJSON('{% url 'expansion:query_rate' %}',function(ret){
-                fig_rate(ret);
+                fig_rate(ret)
                 query_rate = ret;
                 return query_rate;
             })
@@ -157,11 +141,11 @@
         var padding = {'left':30,'right':20,'top':20,'bottom':30};
 
         var xscale = d3.scaleLinear()
-            .domain([0,1.2])
+            .domain([0,1])
             .range([padding.left,width-padding.right]);
 
         var yscale = d3.scaleLinear()
-            .domain([0,1.2])
+            .domain([0,1])
             .range([height-padding.bottom,padding.top]);
 
         var svgupdate = newsvg.selectAll('circle')
@@ -324,7 +308,7 @@
 
 
     }
-    
+
     function fig_z(data) {
         var svgz = d3.select('#z');
 
@@ -437,7 +421,7 @@
             })
             .attr('opacity',0.8);
 
-        svgenter.append('rect');
+        svgenter.append('rect')
             attr('x',function (d,i) {
                 return padwidth/2+(i%3)*rectwidth+parseInt(i/3)*rectpad
             })
